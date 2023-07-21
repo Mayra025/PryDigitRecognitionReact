@@ -11,7 +11,6 @@ import styled from 'styled-components'; // Agrega esta importación
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff'; // Importa el icono de silenciado
 
-// import useSound from 'use-sound';
 import { useEffect } from 'react';
 
 
@@ -72,10 +71,7 @@ const ButtonWrap = styled.div`
   margin-right: 5px;
   margin-left: 5px;
 `;
-const AudioContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
+
 
 export function ObjectDetector() {
   const actualChar = 'A'
@@ -126,31 +122,10 @@ export function ObjectDetector() {
   }
 
   // Sound
-  // const [muted, setMuted] = useState(false); // Estado para controlar el ícono de volumen
-  // const [value, setValue] = useState(1);
+ 
   const audioRef = useRef<HTMLAudioElement | null>(null); // Tipo explícito para audioRef
   const [playback, setPlayback] = useState(true);
-  // const [muted, setMuted] = useState(false); // Estado para controlar el ícono de volumen
-
-
-  // useEffect(() => {
-  //   if (value % 2 === 0) {
-  //     play()
-  //   }
-  // }, [value]);
-  // function play() {
-  //   new Audio('/static/numeros.mp3').play()
-  // }
-
-  // return (
-  //   <Container style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-  //     <TextContainer>
-  //       aprende
-  //       <Button variant="contained" onClick={() => setValue(value + 1)}>
-  //         <VolumeUpIcon />
-  //       </Button>
-  //     </TextContainer>
-
+ 
   useEffect(() => {
     if (playback) {
       audioRef.current?.play().catch((error) => {
@@ -173,13 +148,7 @@ export function ObjectDetector() {
   }, []);
 
   const handleButtonClick = () => {
-    // if (muted) {
-    //   setMuted(false);
-    //   setPlayback(true);
-    // } else {
-    //   setMuted(true);
-    //   setPlayback(false);
-    // }
+   
     setPlayback((prevPlayback) => !prevPlayback); // Alternar el estado entre reproducción y silencio
 
   };
@@ -189,11 +158,8 @@ export function ObjectDetector() {
     <Container style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       <TextContainer>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium pariatur ea et cum eius magnam impedit cumque modi repellat voluptatibus quisquam quasi, natus mollitia excepturi sit inventore voluptatum consectetur. Perferendis!</p>
-        {/* <Button variant="contained" onClick={handleButtonClick}>
-          {playback ? <VolumeUpIcon onClick={handleMuteToggle} /> : <VolumeOffIcon onClick={handleMuteToggle} />}
-        </Button> */}
+    
         <audio ref={audioRef} src="/static/numeros.mp3" />
-
         <Button variant="contained" onClick={handleButtonClick}>
           {playback ? <VolumeUpIcon /> : <VolumeOffIcon />}
         </Button>
